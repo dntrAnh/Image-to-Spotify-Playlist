@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Your suggested playlists based on your scenery...</h1>
+    <div class="playlist-container">
+        {% for playlist in playlists %}
+        <div class="playlist-card">
+            <strong>{{ playlist.name }}</strong> by {{ playlist.owner }}<br>
+            <a href="{{ playlist.url }}" target="_blank">Listen here</a><br>
+            <em>{{ playlist.description }}</em>
+            <br><br>
+            <iframe src="https://open.spotify.com/embed/playlist/{{ playlist.id }}" 
+                    width="300" 
+                    height="380" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media">
+            </iframe>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <a href="/">Upload Another Image</a>
+</body>
+</html>
